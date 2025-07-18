@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+load_dotenv()
 
 from app.feeds import fetch_items
 from app.summary import summarise
@@ -6,8 +7,6 @@ from app.notify import notify
 
 
 def main():
-    load_dotenv()
-
     rss_url = "https://www.aph.gov.au/senate/rss/new_inquiries"
 
     items = fetch_items(rss_url, max_items=1)  # fetch just the latest item
