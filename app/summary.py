@@ -5,12 +5,11 @@ summary.py  –  tiny Cohere wrapper
 import os
 
 import cohere
-from dotenv import load_dotenv
 
-load_dotenv()  # loads .env into env vars
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+assert COHERE_API_KEY, "COHERE_API_KEY environment variable must be set"
 
-API_KEY = os.getenv("COHERE_API_KEY")
-co = cohere.ClientV2(api_key=API_KEY)
+co = cohere.ClientV2(api_key=COHERE_API_KEY)
 
 MODEL = "command-light"  # good, fast, free
 MESSAGE = "Generate a concise summary of this text\n{text}"
