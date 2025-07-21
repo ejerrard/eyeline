@@ -2,30 +2,34 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from app.feeds import get_new_items
+from app.feeds import get_new_items, load_feeds
 from app.notify import notify
+
+import logging
+
+logging.basicConfig(level=logging.INFO, format="> %(message)s")
 
 
 def main():
-    rss_url = "https://www.aph.gov.au/senate/rss/new_inquiries"
+    feeds = load_feeds()
 
-    items, is_first_run = get_new_items(rss_url)
+    for feed in feeds:
+        items, is_first_run = get_new_items(feed["url"])
 
-    for item in items:
-        print("== Item ==")
-        print(f"Title: {item.title}")
-        print(f"Link: {item.link}")
-        print(f"Published: {item.published}")   
-        print(f"Summary: {item.summary}")
+        for item in items:
+            logging.info("== Item ==")
+            logging.info(f"Title: {item.get('title', '')}")
+            logging.info(f"Link: {item.get('link', '')}")
+            logging.info(f"Published: {item.get('published', '')}")
 
-        if not is_first_run:
-            notify(item.summary)
-    
-    if is_first_run:
-        print("This is the first run for this RSS URL. No previous items to compare against.")
-    
-    if not items:
-        print("No new items found in the RSS feed.")
+            if not is_first_run:
+                notify(item.summary)
+
+        if is_first_run:
+            logging.info("This is the first run for this RSS URL.")
+
+        if not items:
+            logging.info("No new items found in the RSS feed.")
 
 
 if __name__ == "__main__":

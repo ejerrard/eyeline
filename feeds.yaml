@@ -1,0 +1,10 @@
+- name: APH New Senate committee inquiries
+  url: https://www.aph.gov.au/senate/rss/new_inquiries
+- name: APH Senate committee reports tabled
+  url: https://www.aph.gov.au/senate/rss/reports
+- name: APH Today's Senate committee hearings
+  url: https://www.aph.gov.au/senate/rss/red
+- name: APH Upcoming Senate committee hearings
+  url: https://www.aph.gov.au/senate/rss/upcoming_hearings
+- name: APH Updates to Senators' Details
+  url: https://www.aph.gov.au/senate/rss/senators_details

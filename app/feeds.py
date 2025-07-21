@@ -1,8 +1,20 @@
 import feedparser
 import hashlib
 import json
+import yaml
+from pathlib import Path
 
-HISTORY_FILE = "rss_history.json"
+BASE_DIR = Path(__file__).resolve().parent.parent
+FEEDS_FILE = BASE_DIR / "feeds.yaml"
+HISTORY_FILE = BASE_DIR / "rss_history.json"
+
+
+def load_feeds() -> list[dict]:
+    """
+    Loads RSS feeds from the feeds.yaml file.
+    """
+    with FEEDS_FILE.open("r") as f:
+        return yaml.safe_load(f)
 
 
 def hash_item(item) -> str:
@@ -29,7 +41,7 @@ def get_new_items(rss_url: str) -> tuple[list, bool]:
     Also returns whether this is the first run for the given RSS URL.
     """
     try:
-        with open(HISTORY_FILE, "r") as f:
+        with HISTORY_FILE.open("r") as f:
             history = json.load(f)
     except FileNotFoundError:
         history = {}
@@ -50,7 +62,7 @@ def get_new_items(rss_url: str) -> tuple[list, bool]:
 
     history[rss_url] = list(rss_history)
 
-    with open(HISTORY_FILE, "w") as f:
+    with HISTORY_FILE.open("w") as f:
         json.dump(history, f, indent=2)
 
     return rss_new, is_first_run
