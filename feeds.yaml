@@ -1,10 +1,36 @@
-- name: APH New Senate committee inquiries
-  url: https://www.aph.gov.au/senate/rss/new_inquiries
-- name: APH Senate committee reports tabled
-  url: https://www.aph.gov.au/senate/rss/reports
-- name: APH Today's Senate committee hearings
-  url: https://www.aph.gov.au/senate/rss/red
-- name: APH Upcoming Senate committee hearings
-  url: https://www.aph.gov.au/senate/rss/upcoming_hearings
-- name: APH Updates to Senators' Details
-  url: https://www.aph.gov.au/senate/rss/senators_details
+APH:
+  Senate:
+    New Senate committee inquiries:
+      url: https://www.aph.gov.au/senate/rss/new_inquiries
+    Committee reports tabled:
+      url: https://www.aph.gov.au/senate/rss/reports
+    Today's Senate committee hearings:
+      url: https://www.aph.gov.au/senate/rss/red
+    Upcoming Senate committee hearings:
+      url: https://www.aph.gov.au/senate/rss/upcoming_hearings
+    Updates to Senators' Details:
+      url: https://www.aph.gov.au/senate/rss/senators_details
+
+  House of Representatives:
+    About the House News:
+      url: https://www.aph.gov.au/house/rss/house_news
+    Media Releases:
+      url: https://www.aph.gov.au/house/rss/media_releases
+    House Inquiries:
+      url: https://www.aph.gov.au/house/rss/house_inquiries
+    Joint Inquiries:
+      url: https://www.aph.gov.au/house/rss/joint_inquiries
+    Daily Program:
+      url: https://www.aph.gov.au/house/rss/daily_program
+    Today's Hearings:
+      url: https://www.aph.gov.au/house/rss/todays_hearings
+    Divisions:
+      url: https://www.aph.gov.au/house/rss/divisions
+
+  Parliamentary Library:
+    Bills Digests:
+      url: https://parlinfo.aph.gov.au/parlInfo/feeds/rss.w3p;adv=yes;orderBy=date-eFirst;page=0;query=Date%3AthisYear%20Dataset%3Abillsdgs;resCount=100
+    Publications:
+      url: http://parlinfo.aph.gov.au/parlInfo/feeds/rss.w3p;adv=yes;orderBy=date-eFirst;page=0;query=Dataset%3Abillsdgs,prspub;resCount=100
+    FlagPost Blog:
+      url: https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/FlagPost/Blog_entries

@@ -11,10 +11,23 @@ HISTORY_FILE = BASE_DIR / "rss_history.json"
 
 def load_feeds() -> list[dict]:
     """
-    Loads RSS feeds from the feeds.yaml file.
+    Loads RSS feeds from the tiered feeds.yaml file and returns a flat list of feed entries.
+    Each entry is a dict with 'name' and 'url' keys.
     """
+
+    def walk(node, prefix=None):
+        feeds = []
+        prefix = prefix or []
+        for key, value in node.items():
+            if isinstance(value, dict) and "url" in value:
+                feeds.append({"name": " - ".join(prefix + [key]), "url": value["url"]})
+            else:
+                feeds.extend(walk(value, prefix + [key]))
+        return feeds
+
     with FEEDS_FILE.open("r") as f:
-        return yaml.safe_load(f)
+        data = yaml.safe_load(f)
+        return walk(data)
 
 
 def hash_item(item) -> str:
